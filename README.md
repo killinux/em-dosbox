@@ -1,3 +1,16 @@
+>hao:
+install:
+emconfigure ./configure --prefix=/usr/local/em_dosbox  --enable-wasm
+make -j4
+
+check:
+src/Makefile.am
+line21(new):
+dosbox_LDFLAGS=-s TOTAL_MEMORY=134217728 -s ALLOW_MEMORY_GROWTH=0 -s FORCE_FILESYSTEM=1
+line32(new):
+dosbox_LDFLAGS+=-s WASM=1 -s 'BINARYEN_TRAP_MODE="clamp"'
+
+=======
 DOSBox ported to Emscripten
 ===========================
 
